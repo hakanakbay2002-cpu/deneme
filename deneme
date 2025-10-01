@@ -1,4 +1,199 @@
-# Basit Python kodu: Kullanıcıdan isim alıp selam verir
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700"
+    />
 
-isim = input("Adın nedir? ")
-print("Merhaba, " + isim + "! Python öğrenmeye hoş geldin.")
+    <title>Stitch Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div
+      class="relative flex h-auto min-h-screen w-full flex-col bg-[#111618] dark group/design-root overflow-x-hidden"
+      style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <div class="gap-1 px-6 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col w-80">
+            <div class="flex p-4 @container">
+              <div class="flex w-full flex-col gap-4 items-center">
+                <div class="flex gap-4 flex-col items-center">
+                  <div
+                    class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAfkJgJkpVtk93mb5OFMVpirr7HO48fK-LTBblfbHdgsR8WDYMNdA6YdIvFi-eMkfKLdxgkhpZcjb65p1gPo78lcRFw5prr9dws-civCVCjIseceJHQYIDrI-hh-kJbUFTM5Kwco6oCUXGqaXeJYgrlKSA9J1HEYFnJ-1XDgkuP6-IHtgNZqfVND55JXjcgHVOXK7VFYBwgrFFauoKUQ1Uz3rPRz2JvKy1Zg1MyllFS4yaHmA3UZghAG3jXojVl1ADXkG1z_acThfg");'
+                  ></div>
+                  <div class="flex flex-col items-center justify-center justify-center">
+                    <p class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] text-center">Jess</p>
+                    <p class="text-[#9db0b9] text-base font-normal leading-normal text-center">Giant Slalom</p>
+                    <p class="text-[#9db0b9] text-base font-normal leading-normal text-center">Team USA</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-3 px-4 py-3">
+              <div class="flex min-w-[111px] flex-1 basis-[fit-content] flex-col gap-2 rounded-lg border border-[#3b4b54] p-3 items-start">
+                <p class="text-white tracking-light text-2xl font-bold leading-tight">12</p>
+                <div class="flex items-center gap-2"><p class="text-[#9db0b9] text-sm font-normal leading-normal">World Cup Wins</p></div>
+              </div>
+              <div class="flex min-w-[111px] flex-1 basis-[fit-content] flex-col gap-2 rounded-lg border border-[#3b4b54] p-3 items-start">
+                <p class="text-white tracking-light text-2xl font-bold leading-tight">3</p>
+                <div class="flex items-center gap-2"><p class="text-[#9db0b9] text-sm font-normal leading-normal">Olympic Medals</p></div>
+              </div>
+              <div class="flex min-w-[111px] flex-1 basis-[fit-content] flex-col gap-2 rounded-lg border border-[#3b4b54] p-3 items-start">
+                <p class="text-white tracking-light text-2xl font-bold leading-tight">2</p>
+                <div class="flex items-center gap-2"><p class="text-[#9db0b9] text-sm font-normal leading-normal">World Championship Titles</p></div>
+              </div>
+            </div>
+            <h3 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Key Performance Indicators</h3>
+            <div class="flex flex-wrap gap-4 p-4">
+              <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-lg p-6 border border-[#3b4b54]">
+                <p class="text-white text-base font-medium leading-normal">Average Run Time</p>
+                <p class="text-white tracking-light text-2xl font-bold leading-tight">1:05.23</p>
+              </div>
+              <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-lg p-6 border border-[#3b4b54]">
+                <p class="text-white text-base font-medium leading-normal">Best Run Time</p>
+                <p class="text-white tracking-light text-2xl font-bold leading-tight">1:03.87</p>
+              </div>
+            </div>
+            <h3 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Recent Runs</h3>
+            <div class="flex items-center gap-4 bg-[#111618] px-4 min-h-[72px] py-2 justify-between">
+              <div class="flex flex-col justify-center">
+                <p class="text-white text-base font-medium leading-normal line-clamp-1">Run 1: 1:04.56</p>
+                <p class="text-[#9db0b9] text-sm font-normal leading-normal line-clamp-2">2023 World Cup</p>
+              </div>
+              <div class="shrink-0"><p class="text-white text-base font-normal leading-normal">1st</p></div>
+            </div>
+            <div class="flex items-center gap-4 bg-[#111618] px-4 min-h-[72px] py-2 justify-between">
+              <div class="flex flex-col justify-center">
+                <p class="text-white text-base font-medium leading-normal line-clamp-1">Run 2: 1:05.12</p>
+                <p class="text-[#9db0b9] text-sm font-normal leading-normal line-clamp-2">2023 World Cup</p>
+              </div>
+              <div class="shrink-0"><p class="text-white text-base font-normal leading-normal">2nd</p></div>
+            </div>
+            <div class="flex items-center gap-4 bg-[#111618] px-4 min-h-[72px] py-2 justify-between">
+              <div class="flex flex-col justify-center">
+                <p class="text-white text-base font-medium leading-normal line-clamp-1">Run 3: 1:06.01</p>
+                <p class="text-[#9db0b9] text-sm font-normal leading-normal line-clamp-2">2023 World Cup</p>
+              </div>
+              <div class="shrink-0"><p class="text-white text-base font-normal leading-normal">3rd</p></div>
+            </div>
+          </div>
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4">
+              <div class="flex min-w-72 flex-col gap-3">
+                <p class="text-white tracking-light text-[32px] font-bold leading-tight">Performance Dashboard</p>
+                <p class="text-[#9db0b9] text-sm font-normal leading-normal">Track Jess's giant slalom performance</p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-4 px-4 py-6">
+              <div class="flex min-w-72 flex-1 flex-col gap-2 rounded-lg border border-[#3b4b54] p-6">
+                <p class="text-white text-base font-medium leading-normal">Run Time Trend</p>
+                <p class="text-white tracking-light text-[32px] font-bold leading-tight truncate">1:05.23</p>
+                <div class="flex gap-1">
+                  <p class="text-[#9db0b9] text-base font-normal leading-normal">Last 5 Runs</p>
+                  <p class="text-[#fa5f38] text-base font-medium leading-normal">-0.5%</p>
+                </div>
+                <div class="flex min-h-[180px] flex-1 flex-col gap-8 py-4">
+                  <svg width="100%" height="148" viewBox="-3 0 478 150" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                    <path
+                      d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H326.769H0V109Z"
+                      fill="url(#paint0_linear_1131_5935)"
+                    ></path>
+                    <path
+                      d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
+                      stroke="#9db0b9"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                    ></path>
+                    <defs>
+                      <linearGradient id="paint0_linear_1131_5935" x1="236" y1="1" x2="236" y2="149" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#283339"></stop>
+                        <stop offset="1" stop-color="#283339" stop-opacity="0"></stop>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div class="flex justify-around">
+                    <p class="text-[#9db0b9] text-[13px] font-bold leading-normal tracking-[0.015em]">Run 1</p>
+                    <p class="text-[#9db0b9] text-[13px] font-bold leading-normal tracking-[0.015em]">Run 2</p>
+                    <p class="text-[#9db0b9] text-[13px] font-bold leading-normal tracking-[0.015em]">Run 3</p>
+                    <p class="text-[#9db0b9] text-[13px] font-bold leading-normal tracking-[0.015em]">Run 4</p>
+                    <p class="text-[#9db0b9] text-[13px] font-bold leading-normal tracking-[0.015em]">Run 5</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Run Analysis</h3>
+            <div class="px-4 py-3 @container">
+              <div class="flex overflow-hidden rounded-lg border border-[#3b4b54] bg-[#111618]">
+                <table class="flex-1">
+                  <thead>
+                    <tr class="bg-[#1c2327]">
+                      <th class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-120 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Run</th>
+                      <th class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-240 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Date</th>
+                      <th class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-360 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Time</th>
+                      <th class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-480 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Rank</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-t border-t-[#3b4b54]">
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-120 h-[72px] px-4 py-2 w-[400px] text-white text-sm font-normal leading-normal">Run 1</td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-240 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">
+                        2023-01-15
+                      </td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-360 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">1:04.56</td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-480 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">1st</td>
+                    </tr>
+                    <tr class="border-t border-t-[#3b4b54]">
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-120 h-[72px] px-4 py-2 w-[400px] text-white text-sm font-normal leading-normal">Run 2</td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-240 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">
+                        2023-01-22
+                      </td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-360 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">1:05.12</td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-480 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">2nd</td>
+                    </tr>
+                    <tr class="border-t border-t-[#3b4b54]">
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-120 h-[72px] px-4 py-2 w-[400px] text-white text-sm font-normal leading-normal">Run 3</td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-240 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">
+                        2023-01-29
+                      </td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-360 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">1:06.01</td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-480 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">3rd</td>
+                    </tr>
+                    <tr class="border-t border-t-[#3b4b54]">
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-120 h-[72px] px-4 py-2 w-[400px] text-white text-sm font-normal leading-normal">Run 4</td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-240 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">
+                        2023-02-05
+                      </td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-360 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">1:05.50</td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-480 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">2nd</td>
+                    </tr>
+                    <tr class="border-t border-t-[#3b4b54]">
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-120 h-[72px] px-4 py-2 w-[400px] text-white text-sm font-normal leading-normal">Run 5</td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-240 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">
+                        2023-02-12
+                      </td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-360 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">1:04.95</td>
+                      <td class="table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-480 h-[72px] px-4 py-2 w-[400px] text-[#9db0b9] text-sm font-normal leading-normal">1st</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <style>
+                          @container(max-width:120px){.table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-120{display: none;}}
+                @container(max-width:240px){.table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-240{display: none;}}
+                @container(max-width:360px){.table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-360{display: none;}}
+                @container(max-width:480px){.table-be7e760a-5037-4d7a-b8a2-3344d4fc1bd9-column-480{display: none;}}
+              </style>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
