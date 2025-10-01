@@ -1,0 +1,4 @@
+# Basit Python kodu: Kullanıcıdan isim alıp selam verir
+
+isim = input("Adın nedir? ")
+print("Merhaba, " + isim + "! Python öğrenmeye hoş geldin.")
