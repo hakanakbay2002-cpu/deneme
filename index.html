@@ -41,10 +41,15 @@
                 <p class="text-white tracking-light text-2xl font-bold leading-tight">12</p>
                 <div class="flex items-center gap-2"><p class="text-[#9db0b9] text-sm font-normal leading-normal">World Cup Wins</p></div>
               </div>
-              <div class="flex min-w-[111px] flex-1 basis-[fit-content] flex-col gap-2 rounded-lg border border-[#3b4b54] p-3 items-start">
+              <a
+                href="gold-medals.html"
+                class="flex min-w-[111px] flex-1 basis-[fit-content] flex-col gap-2 rounded-lg border border-[#3b4b54] p-3 items-start hover:border-[#4fb3ff] transition-colors"
+              >
                 <p class="text-white tracking-light text-2xl font-bold leading-tight">3</p>
-                <div class="flex items-center gap-2"><p class="text-[#9db0b9] text-sm font-normal leading-normal">Olympic Medals</p></div>
-              </div>
+                <div class="flex items-center gap-2">
+                  <p class="text-[#9db0b9] text-sm font-normal leading-normal underline decoration-dotted">Gold Medals</p>
+                </div>
+              </a>
               <div class="flex min-w-[111px] flex-1 basis-[fit-content] flex-col gap-2 rounded-lg border border-[#3b4b54] p-3 items-start">
                 <p class="text-white tracking-light text-2xl font-bold leading-tight">2</p>
                 <div class="flex items-center gap-2"><p class="text-[#9db0b9] text-sm font-normal leading-normal">World Championship Titles</p></div>
@@ -100,24 +105,10 @@
                   <p class="text-[#fa5f38] text-base font-medium leading-normal">-0.5%</p>
                 </div>
                 <div class="flex min-h-[180px] flex-1 flex-col gap-8 py-4">
-                  <svg width="100%" height="148" viewBox="-3 0 478 150" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                    <path
-                      d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H326.769H0V109Z"
-                      fill="url(#paint0_linear_1131_5935)"
-                    ></path>
-                    <path
-                      d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
-                      stroke="#9db0b9"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                    ></path>
-                    <defs>
-                      <linearGradient id="paint0_linear_1131_5935" x1="236" y1="1" x2="236" y2="149" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#283339"></stop>
-                        <stop offset="1" stop-color="#283339" stop-opacity="0"></stop>
-                      </linearGradient>
-                    </defs>
-                  </svg>
+                  <div class="relative h-[180px] w-full overflow-hidden rounded-xl border border-[#283339] bg-[#121a1d]">
+                    <canvas id="runTimeChart" class="absolute inset-0 h-full w-full"></canvas>
+                    <div class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#111618] to-transparent"></div>
+                  </div>
                   <div class="flex justify-around">
                     <p class="text-[#9db0b9] text-[13px] font-bold leading-normal tracking-[0.015em]">Run 1</p>
                     <p class="text-[#9db0b9] text-[13px] font-bold leading-normal tracking-[0.015em]">Run 2</p>
@@ -195,5 +186,221 @@
         </div>
       </div>
     </div>
+    <script>
+      (function () {
+      const dataPoints = [
+        { label: 'Run 1', value: 64.56 },
+        { label: 'Run 2', value: 65.12 },
+        { label: 'Run 3', value: 66.01 },
+        { label: 'Run 4', value: 65.5 },
+        { label: 'Run 5', value: 64.95 },
+      ];
+
+      const canvas = document.getElementById('runTimeChart');
+      if (!canvas || typeof window === 'undefined') {
+        return;
+      }
+
+      const ctx = canvas.getContext('2d');
+      const padding = { top: 32, right: 32, bottom: 48, left: 64 };
+      const drawDuration = 1800;
+      const highlightDuration = 3600;
+      let animationStart = null;
+
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      function formatSecondsToTime(seconds) {
+        const wholeSeconds = Math.max(seconds, 0);
+        const minutes = Math.floor(wholeSeconds / 60);
+        const remaining = wholeSeconds - minutes * 60;
+        return `${minutes}:${remaining.toFixed(2).padStart(5, '0')}`;
+      }
+
+      function setCanvasSize() {
+        const rect = canvas.getBoundingClientRect();
+        const width = rect.width || canvas.clientWidth || 300;
+        const height = rect.height || canvas.clientHeight || 180;
+        const dpr = window.devicePixelRatio || 1;
+        if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          ctx.scale(dpr, dpr);
+        }
+        return { width, height };
+      }
+
+      function getPoints(width, height) {
+        const values = dataPoints.map((point) => point.value);
+        const max = Math.max(...values);
+        const min = Math.min(...values);
+        const range = max - min || 1;
+        const plotWidth = width - padding.left - padding.right;
+        const plotHeight = height - padding.top - padding.bottom;
+        const step = dataPoints.length > 1 ? plotWidth / (dataPoints.length - 1) : 0;
+        return dataPoints.map((point, index) => {
+          const normalized = (point.value - min) / range;
+          const x = padding.left + step * index;
+          const y = padding.top + (1 - normalized) * plotHeight;
+          return { ...point, x, y };
+        });
+      }
+
+      function getPartial(points, progress) {
+        if (!points.length) {
+          return { pathPoints: [], currentPoint: null };
+        }
+
+        const clamped = Math.max(0, Math.min(progress, 1));
+        const totalSegments = Math.max(points.length - 1, 1);
+        const scaled = clamped * totalSegments;
+        const index = Math.floor(scaled);
+        const segmentT = scaled - index;
+        const pathPoints = [points[0]];
+
+        for (let i = 1; i <= index && i < points.length; i += 1) {
+          pathPoints.push(points[i]);
+        }
+
+        let currentPoint = points[points.length - 1];
+        if (index < points.length - 1) {
+          const start = points[index];
+          const end = points[Math.min(index + 1, points.length - 1)];
+          currentPoint = {
+            label: end.label,
+            value: start.value + (end.value - start.value) * segmentT,
+            x: start.x + (end.x - start.x) * segmentT,
+            y: start.y + (end.y - start.y) * segmentT,
+          };
+
+          if (segmentT > 0 || pathPoints.length === 1) {
+            pathPoints.push(currentPoint);
+          }
+        }
+
+        return { pathPoints, currentPoint };
+      }
+
+      function draw(timestamp) {
+        if (animationStart === null) {
+          animationStart = timestamp;
+        }
+
+        const elapsed = timestamp - animationStart;
+        const { width, height } = setCanvasSize();
+        const points = getPoints(width, height);
+        const baseline = height - padding.bottom;
+        const drawProgress = Math.min(elapsed / drawDuration, 1);
+        const easedProgress = easeInOutCubic(drawProgress);
+        const oscillation = Math.sin(elapsed / 600) * 6;
+        const loopProgress = easeInOutCubic(((elapsed % highlightDuration) / highlightDuration));
+        const highlightProgress = drawProgress < 1 ? easedProgress : loopProgress;
+
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#111618';
+        ctx.fillRect(0, 0, width, height);
+
+        const gridLines = 4;
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(157, 176, 185, 0.15)';
+        ctx.setLineDash([4, 6]);
+        for (let i = 0; i <= gridLines; i += 1) {
+          const y = padding.top + ((height - padding.top - padding.bottom) / gridLines) * i + oscillation * 0.05;
+          ctx.beginPath();
+          ctx.moveTo(padding.left, y);
+          ctx.lineTo(width - padding.right, y);
+          ctx.stroke();
+        }
+        ctx.setLineDash([]);
+
+        const gradient = ctx.createLinearGradient(0, padding.top, 0, baseline);
+        gradient.addColorStop(0, 'rgba(79, 179, 255, 0.35)');
+        gradient.addColorStop(1, 'rgba(79, 179, 255, 0)');
+
+        const partial = getPartial(points, Math.max(0.001, easedProgress));
+
+        if (partial.pathPoints.length) {
+          ctx.beginPath();
+          ctx.moveTo(partial.pathPoints[0].x, baseline);
+          partial.pathPoints.forEach((pt) => {
+            ctx.lineTo(pt.x, pt.y);
+          });
+          const lastPoint = partial.pathPoints[partial.pathPoints.length - 1];
+          ctx.lineTo(lastPoint.x, baseline);
+          ctx.closePath();
+          ctx.fillStyle = gradient;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.moveTo(partial.pathPoints[0].x, partial.pathPoints[0].y);
+          for (let i = 1; i < partial.pathPoints.length; i += 1) {
+            ctx.lineTo(partial.pathPoints[i].x, partial.pathPoints[i].y);
+          }
+          ctx.strokeStyle = 'rgba(79, 179, 255, 0.9)';
+          ctx.lineWidth = 3;
+          ctx.shadowColor = 'rgba(79, 179, 255, 0.45)';
+          ctx.shadowBlur = 18;
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+        }
+
+        const totalSegments = Math.max(points.length - 1, 1);
+        const fullyDrawn = Math.floor(easedProgress * totalSegments);
+        for (let i = 0; i <= fullyDrawn && i < points.length; i += 1) {
+          const pt = points[i];
+          ctx.beginPath();
+          ctx.fillStyle = '#111618';
+          ctx.arc(pt.x, pt.y, 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = 'rgba(79, 179, 255, 0.9)';
+          ctx.arc(pt.x, pt.y, 5, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        const highlightPartial = getPartial(points, highlightProgress);
+        const highlight = highlightPartial.currentPoint;
+        if (highlight) {
+          const glow = ctx.createRadialGradient(highlight.x, highlight.y, 0, highlight.x, highlight.y, 24);
+          glow.addColorStop(0, 'rgba(79, 179, 255, 0.8)');
+          glow.addColorStop(1, 'rgba(79, 179, 255, 0)');
+          ctx.beginPath();
+          ctx.fillStyle = glow;
+          ctx.arc(highlight.x, highlight.y, 10, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#ffffff';
+          ctx.font = '12px "Space Grotesk", "Noto Sans", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(formatSecondsToTime(highlight.value), highlight.x, highlight.y - 18);
+        }
+
+        ctx.fillStyle = '#9db0b9';
+        ctx.font = '12px "Space Grotesk", "Noto Sans", sans-serif';
+        ctx.textAlign = 'right';
+        const values = dataPoints.map((point) => point.value);
+        const max = Math.max(...values);
+        const min = Math.min(...values);
+        const ticks = 4;
+        for (let i = 0; i <= ticks; i += 1) {
+          const fraction = i / ticks;
+          const y = padding.top + (1 - fraction) * (height - padding.top - padding.bottom);
+          const value = min + (max - min) * fraction;
+          ctx.fillText(formatSecondsToTime(value), padding.left - 12, y + 4);
+        }
+
+        window.requestAnimationFrame(draw);
+      }
+
+      window.requestAnimationFrame(draw);
+
+      window.addEventListener('resize', () => {
+        animationStart = performance.now() - drawDuration;
+      });
+    })();
+    </script>
   </body>
 </html>
